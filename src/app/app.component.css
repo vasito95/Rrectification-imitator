@@ -1,7 +1,38 @@
-.center{
-  position: absolute;
-  margin: 100px 100px 100px 100px;
-  width: 100%;
-  height: 100%;
-  align-content: center;
+*{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.example-container{
+  height: 100%;
+  width:100%;
+}
+.main-content{
+  padding: 16px;
+}
+mat-drawer {
+  background-color: blueviolet;
+  border-top: 2px solid whitesmoke;
+  width: 200px;
+}
+.nav-button{
+  width: 100%;
+  text-align: center;
+  background-color: blueviolet;
+  border-bottom: 2px solid whitesmoke;
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  color: whitesmoke;
+}
+.nav-button a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+header{
+  background-color: blueviolet;
+  width: 100%;
+  color: whitesmoke;
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+}
+

@@ -1,4 +1,17 @@
-<div class="center">
-  <mat-slider thumbLabel  min="0" max="100" step="0.1" value="{{value}}" (change)="onVolumeChanged($event)"></mat-slider>
-  <div>{{value}}</div>
-</div>
+<header>Ректифікаційна колона</header>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <div class="nav-button">
+      <a routerLink="/control" routerLinkActive="active">Контроль</a>
+    </div>
+    <div class="nav-button">
+      <a routerLink="/graphs" routerLinkActive="active">Графіки</a>
+    </div>
+    <div class="nav-button">
+      <a routerLink="/parameters" routerLinkActive="active">Параметри</a>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
