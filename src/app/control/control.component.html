@@ -1,14 +1,9 @@
 <div class="center">
-  <mat-slider thumbLabel min="0" max="100" step="0.1" value="{{data.temp1}}"
-              (change)="onTemp1Changed($event)"></mat-slider>
-  <div>{{data.temp1}}</div>
-  <mat-slider thumbLabel min="0" max="100" step="0.1" value="{{data.temp2}}"
-              (change)="onTemp2Changed($event)"></mat-slider>
-  <div>{{data.temp2}}</div>
+  <div>Ступінь відприття клапану регулюючого витрату гідрогенізату: {{data.valve1}}%</div>
   <mat-slider thumbLabel min="0" max="100" step="0.1" value="{{data.valve1}}"
               (change)="onValve1Changed($event)"></mat-slider>
-  <div>{{data.valve1}}</div>
+  <div>Ступінь відкриття клапану регулюючого витрату пари: {{data.valve2}}%</div>
   <mat-slider thumbLabel min="0" max="100" step="0.1" value="{{data.valve2}}"
               (change)="onValve2Changed($event)"></mat-slider>
-  <div>{{data.valve2}}</div>
+
 </div>

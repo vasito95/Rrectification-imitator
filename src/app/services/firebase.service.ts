@@ -9,9 +9,11 @@ import {RectificationColumnModel} from '../model/rectification_column_model';
 
 export class FirebaseService {
 
-  dataRef: AngularFireObject<any>;
+  dataRef: AngularFireObject<RectificationColumnModel>;
   temperatureTargetRef: AngularFireObject<any>;
   temperatureCurrentOutRef: AngularFireObject<any>;
+  flowCurrentOutRef: AngularFireObject<any>;
+  flowTargetRef: AngularFireObject<any>;
 
   constructor(private db: AngularFireDatabase) {
   }
@@ -20,6 +22,15 @@ export class FirebaseService {
     this.dataRef = this.db.object('data');
     this.temperatureTargetRef = this.db.object('targetTemperature');
     this.temperatureCurrentOutRef = this.db.object('currentTemperatureOut');
+    this.flowCurrentOutRef = this.db.object('flowCurrentOut');
+    this.flowTargetRef = this.db.object('targetFlow');
+  }
+
+  initTargetProcessing(): void {
+    this.dataRef.valueChanges().subscribe(value => {
+      this.db.database.ref('targetFlow').transaction(_ => 0.20 * ((value.valve1 * value.valve2) * 0.00016));
+      this.db.database.ref('targetTemperature').transaction(_ => 80 * ((value.valve1 * value.valve2) * 0.00010625));
+    });
   }
 
   updateData(data: RectificationColumnModel): Promise<void> {
@@ -30,8 +41,21 @@ export class FirebaseService {
       temp2: data.temp2,
     });
   }
-  updateCurrent(currentOut: number): Promise<void> {
-    return this.db.database.ref().update({currentOut});
+
+  updateCurrentTemperature(currentTemperatureOut: number): Promise<void> {
+    return this.db.database.ref().update({currentTemperatureOut});
+  }
+
+  updateCurrentFlow(flowCurrentOut: number): Promise<void> {
+    return this.db.database.ref().update({flowCurrentOut});
+  }
+
+  updateTemperatureTarget(targetTemperature: number): Promise<void> {
+    return this.db.database.ref().update({targetTemperature});
+  }
+
+  updateFlowTarget(targetFlow: number): Promise<void> {
+    return this.db.database.ref().update({targetFlow});
   }
 }
 

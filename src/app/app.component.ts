@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.firebaseService.getData();
+    this.firebaseService.initTargetProcessing();
+
   }
 
 }
